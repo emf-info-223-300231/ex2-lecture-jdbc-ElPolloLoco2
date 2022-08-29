@@ -81,7 +81,9 @@ public class DbWorker implements DbWorkerItf {
                 String prenom = rs.getString("Prenom");
                 Personne personne = new Personne(nom, prenom);
                 listePersonnes.add(personne);                
-            }          
+            }
+            st.close();
+            rs.close();
         } catch (SQLException ex) {
 
 
@@ -121,7 +123,7 @@ public class DbWorker implements DbWorkerItf {
             result = listePersonnes.get(index);
         }
         result = listePersonnes.get(index);
-        return result;
-
+return result;
+      
    }
 }
