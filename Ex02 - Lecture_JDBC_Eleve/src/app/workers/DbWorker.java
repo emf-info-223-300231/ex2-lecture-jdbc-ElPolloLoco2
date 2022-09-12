@@ -21,7 +21,7 @@ public class DbWorker implements DbWorkerItf {
     }
 
     @Override
-    public void connecterBdMySQL(String nomDB) throws MyDBException {
+    public void connecterBdMySQL(String nomDB ) throws MyDBException {
         final String url_local = "jdbc:mysql://localhost:3306/" + nomDB;
         final String url_remote = "jdbc:mysql://LAPEMFB37-21.edu.net.fr.ch:3306/" + nomDB;
         final String user = "root";
@@ -84,9 +84,9 @@ public class DbWorker implements DbWorkerItf {
             }
             st.close();
             rs.close();
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
 
-
+            throw new MyDBException(SystemLib.getFullMethodName(), ex.getMessage());
 
        }
         
@@ -102,7 +102,6 @@ public class DbWorker implements DbWorkerItf {
         index = index-1;
         if (index < 0) {
             index = index +1;
-            result = listePersonnes.get(index);
         }    
         result = listePersonnes.get(index);      
         return result;
